@@ -1,6 +1,6 @@
 ﻿using System;
-using FunctionalKnoxDemo.DataAccess;
-using FunctionalKnoxDemo.Models;
+using FunctionalKnox.DataAccess;
+using FunctionalKnox.Domain;
 using FunctionalKnoxDemo.Workflows;
 
 namespace FunctionalKnoxDemo

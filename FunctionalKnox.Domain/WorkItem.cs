@@ -1,11 +1,5 @@
-﻿namespace FunctionalKnoxDemo.Models
+﻿namespace FunctionalKnox.Domain
 {
-    public enum Status
-    {
-        ToDo,
-        InProgress,
-        Done
-    }
     public class WorkItem
     {
         public int Id;

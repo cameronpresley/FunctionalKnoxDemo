@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using FunctionalKnoxDemo.DataAccess;
-using FunctionalKnoxDemo.Models;
+using FunctionalKnox.DataAccess;
+using FunctionalKnox.Domain;
 
 namespace FunctionalKnoxDemo.Workflows
 {
