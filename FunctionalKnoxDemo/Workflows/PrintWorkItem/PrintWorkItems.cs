@@ -4,9 +4,9 @@ using System.Linq;
 using FunctionalKnox.DataAccess;
 using FunctionalKnox.Domain;
 
-namespace FunctionalKnoxDemo.Workflows
+namespace FunctionalKnoxDemo.Workflows.PrintWorkItem
 {
-    public class PrintWorkItems
+    public class PrintWorkItems : IWorkflow
     {
         private readonly IRepository<WorkItem> _repo;
 
@@ -14,36 +14,18 @@ namespace FunctionalKnoxDemo.Workflows
         {
             _repo = repo ?? throw new ArgumentNullException(nameof(repo));
         }
-
-        private string ConvertStatusToDisplay(Status status)
-        {
-            switch (status)
-            {
-                case Status.ToDo:
-                    return "To Do";
-                case Status.InProgress:
-                    return "In Progress";
-                case Status.Done:
-                    return "Done";
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(status), status, null);
-            }
-        }
-
-        private string ConvertWorkItemToDisplay(WorkItem item)
-        {
-            return $"{item.Id}, {item.Title}, {item.Description}, {ConvertStatusToDisplay(item.Status)}";
-        }
-
+        
         private string CreateDisplay(IEnumerable<WorkItem> items)
         {
             var headerRow = "ID, Title, Description, Status";
-            var rows = items.Select(ConvertWorkItemToDisplay).ToList();
+            var rows = items
+                .Select(DisplayHelpers.ConvertWorkItemToDisplay)
+                .ToList();
 
             return headerRow + Environment.NewLine + String.Join(Environment.NewLine, rows);
         }
 
-        public void Workflow()
+        public void Run()
         {
             _repo
                 .GetAll()

@@ -1,7 +1,9 @@
 ﻿using System;
 using FunctionalKnox.DataAccess;
 using FunctionalKnox.Domain;
-using FunctionalKnoxDemo.Workflows;
+using FunctionalKnoxDemo.Workflows.AddWorkItem;
+using FunctionalKnoxDemo.Workflows.PrintWorkItem;
+using FunctionalKnoxDemo.Workflows.ViewWorkItem;
 
 namespace FunctionalKnoxDemo
 {
@@ -42,18 +44,17 @@ namespace FunctionalKnoxDemo
 
         private static void ViewSingleWorkItem(WorkItemRepository repo)
         {
-            new ViewWorkItem(repo).Workflow();
+            new ViewWorkItem(repo).Run();
         }
 
         private static void AddWorkItem(IRepository<WorkItem> repo)
         {
-            new AddWorkItemUsingResult(repo).ResultWorkflow();
-            //new AddWorkItemUsingOption(repo).OptionWorkflow();
+            new AddWorkItemUsingResult(repo).Run();
         }
 
         private static void PrintAllWorkItems(WorkItemRepository repo)
         {
-            new PrintWorkItems(repo).Workflow();
+            new PrintWorkItems(repo).Run();
         }
 
         private static UserChoice GetChoice()
